@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 double defaultMargin = 16;
 double defaultRadius = 8;
@@ -179,3 +180,5 @@ ShapeBorder radiusTopLeftRight = RoundedRectangleBorder(
     topRight: Radius.circular(defaultRadius * 3),
   ),
 );
+
+final supabase = Supabase.instance.client;

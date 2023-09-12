@@ -66,6 +66,42 @@ class AppThemes {
         ),
       ),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateProperty.all(
+          GoogleFonts.workSans(
+            fontWeight: semiBold,
+          ),
+        ),
+        padding: MaterialStateProperty.all(EdgeInsets.zero),
+        backgroundColor: MaterialStateProperty.all(primaryColor),
+        foregroundColor: MaterialStateProperty.all(whiteColor),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(defaultRadius),
+          ),
+        ),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateProperty.all(
+          GoogleFonts.workSans(
+            fontWeight: semiBold,
+          ),
+        ),
+        padding: MaterialStateProperty.all(EdgeInsets.zero),
+        foregroundColor: MaterialStateProperty.all(primaryColor),
+        overlayColor: MaterialStateProperty.all(
+          primaryColor.withOpacity(0.1),
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(defaultRadius),
+          ),
+        ),
+      ),
+    ),
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: bgColorLight2,
       shape: radiusTopLeftRight,
@@ -132,6 +168,42 @@ class AppThemes {
       textStyle: MaterialStateProperty.all(
         GoogleFonts.workSans(
           fontSize: calloutFS,
+        ),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateProperty.all(
+          GoogleFonts.workSans(
+            fontWeight: semiBold,
+          ),
+        ),
+        padding: MaterialStateProperty.all(EdgeInsets.zero),
+        backgroundColor: MaterialStateProperty.all(primaryColor),
+        foregroundColor: MaterialStateProperty.all(whiteColor),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(defaultRadius),
+          ),
+        ),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateProperty.all(
+          GoogleFonts.workSans(
+            fontWeight: semiBold,
+          ),
+        ),
+        padding: MaterialStateProperty.all(EdgeInsets.zero),
+        foregroundColor: MaterialStateProperty.all(primaryColor),
+        overlayColor: MaterialStateProperty.all(
+          primaryColor.withOpacity(0.1),
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(defaultRadius),
+          ),
         ),
       ),
     ),
