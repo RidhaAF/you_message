@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:you_message/app/utils/constants/app_constants.dart';
+import 'package:you_message/app/widgets/default_loading_indicator.dart';
 
 class DefaultButton extends StatelessWidget {
   final bool? isLoading;
@@ -23,9 +23,7 @@ class DefaultButton extends StatelessWidget {
         onPressed: () => onPressed != null ? onPressed!() : null,
         onLongPress: () => onLongPress != null ? onLongPress!() : null,
         child: isLoading == true
-            ? CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(whiteColor),
-              )
+            ? const DefaultLoadingIndicator()
             : Text(
                 text ?? 'Save',
                 textScaleFactor: 1.0,

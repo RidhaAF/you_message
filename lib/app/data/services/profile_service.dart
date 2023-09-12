@@ -38,6 +38,36 @@ class ProfileService implements ProfileRepository {
   }
 
   @override
+  Future<Map<String, dynamic>> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await supabase.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+      return {
+        'success': true,
+        'status': 200,
+        'message': 'Successfully signed in',
+      };
+    } on AuthException catch (error) {
+      return {
+        'success': false,
+        'status': 400,
+        'message': error,
+      };
+    } catch (error) {
+      return {
+        'success': false,
+        'status': 500,
+        'message': error,
+      };
+    }
+  }
+
+  @override
   Future<Map<String, dynamic>> signOut() async {
     try {
       await supabase.auth.signOut();

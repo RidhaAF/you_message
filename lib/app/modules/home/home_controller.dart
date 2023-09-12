@@ -16,7 +16,7 @@ class HomeController extends GetxController {
       final response = await _profileService.signOut();
 
       if (response['status'] == 200) {
-        Get.offAllNamed(AppRoutes.signUp);
+        Get.offAllNamed(AppRoutes.signIn);
         Get.snackbar('Success', response['message']);
       } else {
         Get.snackbar('Error', response['message']);

@@ -5,5 +5,10 @@ abstract class ProfileRepository {
     required String username,
   });
 
+  Future<Map<String, dynamic>> signIn({
+    required String email,
+    required String password,
+  });
+
   Future<Map<String, dynamic>> signOut();
 }

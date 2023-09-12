@@ -3,21 +3,19 @@ import 'package:get/get.dart';
 import 'package:you_message/app/data/services/profile_service.dart';
 import 'package:you_message/app/routes/app_routes.dart';
 
-class SignUpController extends GetxController {
+class SignInController extends GetxController {
   final ProfileService _profileService;
 
-  SignUpController(this._profileService);
+  SignInController(this._profileService);
 
   final formKey = GlobalKey<FormState>();
   final Rx<TextEditingController> emailCtrl = TextEditingController().obs;
   final Rx<TextEditingController> passwordCtrl = TextEditingController().obs;
-  final Rx<TextEditingController> usernameCtrl = TextEditingController().obs;
   final Rx<FocusNode> emailFocus = FocusNode().obs;
   final Rx<FocusNode> passwordFocus = FocusNode().obs;
-  final Rx<FocusNode> usernameFocus = FocusNode().obs;
   final isLoading = false.obs;
 
-  Future<void> signUp() async {
+  Future<void> signIn() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) {
       return;
@@ -25,13 +23,12 @@ class SignUpController extends GetxController {
     isLoading.value = true;
 
     try {
-      final response = await _profileService.signUp(
+      final response = await _profileService.signIn(
         email: emailCtrl.value.text,
         password: passwordCtrl.value.text,
-        username: usernameCtrl.value.text,
       );
 
-      if (response['status'] == 201) {
+      if (response['status'] == 200) {
         Get.offAllNamed(AppRoutes.home);
         Get.snackbar('Success', response['message']);
       } else {

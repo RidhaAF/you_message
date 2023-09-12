@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:you_message/app/modules/home/home_controller.dart';
+import 'package:you_message/app/widgets/default_loading_indicator.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,9 +17,13 @@ class HomePage extends StatelessWidget {
           textScaleFactor: 1.0,
         ),
         actions: [
-          IconButton(
-            onPressed: () => homeController.signOut(),
-            icon: const Icon(Icons.logout),
+          Obx(
+            () => homeController.isLoading.value
+                ? const DefaultLoadingIndicator()
+                : IconButton(
+                    onPressed: () => homeController.signOut(),
+                    icon: const Icon(Icons.logout),
+                  ),
           ),
         ],
       ),
