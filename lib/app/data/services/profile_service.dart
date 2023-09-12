@@ -25,8 +25,8 @@ class ProfileService implements ProfileRepository {
     } on AuthException catch (error) {
       return {
         'success': false,
-        'status': 400,
-        'message': error,
+        'status': int.parse(error.statusCode ?? '400'),
+        'message': error.message.toString(),
       };
     } catch (error) {
       return {
@@ -55,14 +55,14 @@ class ProfileService implements ProfileRepository {
     } on AuthException catch (error) {
       return {
         'success': false,
-        'status': 400,
-        'message': error,
+        'status': int.parse(error.statusCode ?? '400'),
+        'message': error.message.toString(),
       };
     } catch (error) {
       return {
         'success': false,
         'status': 500,
-        'message': error,
+        'message': error.toString(),
       };
     }
   }
@@ -79,8 +79,8 @@ class ProfileService implements ProfileRepository {
     } on AuthException catch (error) {
       return {
         'success': false,
-        'status': 400,
-        'message': error,
+        'status': int.parse(error.statusCode ?? '400'),
+        'message': error.message.toString(),
       };
     } catch (error) {
       return {
