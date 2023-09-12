@@ -36,4 +36,28 @@ class ProfileService implements ProfileRepository {
       };
     }
   }
+
+  @override
+  Future<Map<String, dynamic>> signOut() async {
+    try {
+      await supabase.auth.signOut();
+      return {
+        'success': true,
+        'status': 200,
+        'message': 'Successfully signed out',
+      };
+    } on AuthException catch (error) {
+      return {
+        'success': false,
+        'status': 400,
+        'message': error,
+      };
+    } catch (error) {
+      return {
+        'success': false,
+        'status': 500,
+        'message': error,
+      };
+    }
+  }
 }

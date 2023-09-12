@@ -4,4 +4,6 @@ abstract class ProfileRepository {
     required String password,
     required String username,
   });
+
+  Future<Map<String, dynamic>> signOut();
 }
