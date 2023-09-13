@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:you_message/app/modules/messages/message_detail/message_detail_controller.dart';
+import 'package:you_message/app/modules/message/message_controller.dart';
 import 'package:you_message/app/utils/constants/app_constants.dart';
 import 'package:you_message/app/widgets/default_text_field.dart';
 
 class MessageBar extends StatelessWidget {
-  final MessageDetailController controller;
+  final MessageController controller;
   const MessageBar({super.key, required this.controller});
 
   @override

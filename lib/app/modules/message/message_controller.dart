@@ -4,10 +4,10 @@ import 'package:you_message/app/data/models/message.dart';
 import 'package:you_message/app/data/models/profile.dart';
 import 'package:you_message/app/data/services/message_service.dart';
 
-class MessageDetailController extends GetxController {
+class MessageController extends GetxController {
   final MessageService _messageService;
 
-  MessageDetailController(this._messageService);
+  MessageController(this._messageService);
 
   late Stream<List<Message>> messagesStream = const Stream.empty();
   final Map<String, Profile> profileCache = {};

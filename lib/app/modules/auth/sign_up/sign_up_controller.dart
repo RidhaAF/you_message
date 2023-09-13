@@ -32,7 +32,7 @@ class SignUpController extends GetxController {
       );
 
       if (response['status'] == 201) {
-        Get.offAllNamed(AppRoutes.message);
+        Get.offAllNamed(AppRoutes.rooms);
         Get.snackbar('Success', response['message']);
       } else {
         Get.snackbar('Error', response['message']);

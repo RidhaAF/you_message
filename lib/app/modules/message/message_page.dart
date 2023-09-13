@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:you_message/app/data/models/message.dart';
-import 'package:you_message/app/modules/messages/message_detail/message_detail_controller.dart';
-import 'package:you_message/app/modules/messages/message_detail/widgets/message_bar.dart';
-import 'package:you_message/app/modules/messages/message_detail/widgets/message_bubble.dart';
+import 'package:you_message/app/modules/message/message_controller.dart';
+import 'package:you_message/app/modules/message/widgets/message_bar.dart';
+import 'package:you_message/app/modules/message/widgets/message_bubble.dart';
 import 'package:you_message/app/widgets/default_loading_indicator.dart';
 
-class MessageDetailPage extends StatelessWidget {
-  const MessageDetailPage({super.key});
+class MessagePage extends StatelessWidget {
+  const MessagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Message Detail',
+          'Message',
           textScaleFactor: 1.0,
         ),
       ),
-      body: GetBuilder<MessageDetailController>(
+      body: GetBuilder<MessageController>(
         builder: (controller) {
           return StreamBuilder<List<Message>>(
             stream: controller.messagesStream,

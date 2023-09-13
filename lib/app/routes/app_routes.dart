@@ -5,6 +5,6 @@ class AppRoutes {
 
   static const signUp = '/sign-up';
   static const signIn = '/sign-in';
+  static const rooms = '/rooms';
   static const message = '/message';
-  static const messageDetail = '/message-detail';
 }

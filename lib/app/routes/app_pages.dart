@@ -3,10 +3,10 @@ import 'package:you_message/app/modules/auth/sign_in/sign_in_binding.dart';
 import 'package:you_message/app/modules/auth/sign_in/sign_in_page.dart';
 import 'package:you_message/app/modules/auth/sign_up/sign_up_binding.dart';
 import 'package:you_message/app/modules/auth/sign_up/sign_up_page.dart';
-import 'package:you_message/app/modules/messages/message/message_binding.dart';
-import 'package:you_message/app/modules/messages/message/message_page.dart';
-import 'package:you_message/app/modules/messages/message_detail/message_detail_binding.dart';
-import 'package:you_message/app/modules/messages/message_detail/message_detail_page.dart';
+import 'package:you_message/app/modules/message/message_binding.dart';
+import 'package:you_message/app/modules/message/message_page.dart';
+import 'package:you_message/app/modules/rooms/rooms_binding.dart';
+import 'package:you_message/app/modules/rooms/rooms_page.dart';
 import 'package:you_message/app/routes/app_routes.dart';
 
 class AppPages {
@@ -22,14 +22,14 @@ class AppPages {
       binding: SignInBinding(),
     ),
     GetPage(
+      name: AppRoutes.rooms,
+      page: () => const RoomsPage(),
+      binding: RoomsBinding(),
+    ),
+    GetPage(
       name: AppRoutes.message,
       page: () => const MessagePage(),
       binding: MessageBinding(),
-    ),
-    GetPage(
-      name: AppRoutes.messageDetail,
-      page: () => const MessageDetailPage(),
-      binding: MessageDetailBinding(),
     ),
   ];
 }

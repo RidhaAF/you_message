@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 import 'package:you_message/app/data/services/profile_service.dart';
 import 'package:you_message/app/routes/app_routes.dart';
 
-class MessageController extends GetxController {
+class RoomsController extends GetxController {
   final ProfileService _profileService;
 
-  MessageController(this._profileService);
+  RoomsController(this._profileService);
 
   final isLoading = false.obs;
 
