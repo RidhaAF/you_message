@@ -13,13 +13,16 @@ class Message {
     required this.isMine,
   });
 
-  factory Message.fromJson(Map<String, dynamic> json) {
+  factory Message.fromJson({
+    required Map<String, dynamic> json,
+    required String myUserId,
+  }) {
     return Message(
       id: json['id'],
       profileId: json['profile_id'],
       content: json['content'],
       createdAt: DateTime.parse(json['created_at']),
-      isMine: json['is_mine'],
+      isMine: myUserId == json['profile_id'],
     );
   }
 }
