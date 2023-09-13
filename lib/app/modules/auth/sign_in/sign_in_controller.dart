@@ -29,7 +29,7 @@ class SignInController extends GetxController {
       );
 
       if (response['status'] == 200) {
-        Get.offAllNamed(AppRoutes.home);
+        Get.offAllNamed(AppRoutes.message);
         Get.snackbar('Success', response['message']);
       } else {
         Get.snackbar('Error', response['message']);

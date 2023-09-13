@@ -32,7 +32,7 @@ class ProfileService implements ProfileRepository {
       return {
         'success': false,
         'status': 500,
-        'message': error,
+        'message': error.toString(),
       };
     }
   }
@@ -86,7 +86,7 @@ class ProfileService implements ProfileRepository {
       return {
         'success': false,
         'status': 500,
-        'message': error,
+        'message': error.toString(),
       };
     }
   }
