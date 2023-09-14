@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
 import 'package:you_message/app/data/services/message_service.dart';
-import 'package:you_message/app/modules/messages/message_detail/message_detail_controller.dart';
+import 'package:you_message/app/modules/message/message_controller.dart';
 
-class MessageDetailBinding extends Bindings {
+class MessageBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(
       () => MessageService(),
     );
     Get.lazyPut(
-      () => MessageDetailController(Get.find()),
+      () => MessageController(Get.find()),
     );
   }
 }

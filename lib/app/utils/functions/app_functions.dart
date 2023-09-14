@@ -3,7 +3,7 @@ import 'package:you_message/app/utils/constants/app_constants.dart';
 
 String getInitialRoute() {
   final session = supabase.auth.currentSession;
-  String route = AppRoutes.message;
+  String route = AppRoutes.rooms;
 
   if (session == null) {
     route = AppRoutes.signUp;

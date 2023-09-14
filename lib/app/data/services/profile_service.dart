@@ -90,4 +90,26 @@ class ProfileService implements ProfileRepository {
       };
     }
   }
+
+  @override
+  Future<Map<String, dynamic>> getProfile({required String profileId}) async {
+    try {
+      final data = await supabase
+          .from('profiles')
+          .select()
+          .match({'id': profileId}).single();
+      return {
+        'success': true,
+        'status': 200,
+        'message': 'Successfully fetched profile',
+        'data': data,
+      };
+    } catch (error) {
+      return {
+        'success': false,
+        'status': 500,
+        'message': error.toString(),
+      };
+    }
+  }
 }

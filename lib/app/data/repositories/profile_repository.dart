@@ -11,4 +11,6 @@ abstract class ProfileRepository {
   });
 
   Future<Map<String, dynamic>> signOut();
+
+  Future<Map<String, dynamic>> getProfile({required String profileId});
 }
