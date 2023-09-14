@@ -60,10 +60,11 @@ class RoomsController extends GetxController {
       final response = await _roomService.roomsSubscription();
 
       if (response['status'] == 200) {
-        response['data'].listen(
+        rawRoomsSubscription = response['data'].listen(
           (participantMaps) async {
             if (participantMaps.isEmpty) {
               isRoomsEmpty.value = true;
+              update();
               return;
             }
 
@@ -71,12 +72,12 @@ class RoomsController extends GetxController {
                 .map<Room>(Room.fromRoomParticipants)
                 .where((room) => room.otherUserId != myUserId)
                 .toList();
-            update();
             for (final room in rooms) {
               newestMessage(roomId: room.id);
               getProfile(userId: room.otherUserId);
             }
             isRoomsLoaded.value = true;
+            update();
           },
         );
       } else {
@@ -104,7 +105,7 @@ class RoomsController extends GetxController {
           });
           if (!isClosed) {
             isRoomsLoaded.value = true;
-            refresh();
+            update();
           }
         });
       } else {
@@ -137,6 +138,7 @@ class RoomsController extends GetxController {
     if (profiles[userId] != null) {
       return;
     }
+    isProfilesLoading.value = true;
 
     try {
       final response = await _profileService.getProfile(profileId: userId);
@@ -157,6 +159,8 @@ class RoomsController extends GetxController {
       }
     } catch (error) {
       Get.snackbar('Error', error.toString());
+    } finally {
+      isProfilesLoading.value = false;
     }
   }
 

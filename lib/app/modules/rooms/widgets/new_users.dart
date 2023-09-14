@@ -29,6 +29,7 @@ class NewUsers extends StatelessWidget {
                         AppRoutes.message,
                         arguments: {
                           'roomId': roomId,
+                          'username': user.username,
                         },
                       );
                     } catch (error) {

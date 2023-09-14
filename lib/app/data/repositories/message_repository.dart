@@ -1,7 +1,7 @@
+import 'package:you_message/app/data/models/message.dart';
+
 abstract class MessageRepository {
-  Future<Map<String, dynamic>> messageByUserId();
+  Future<Map<String, dynamic>> setMessagesListener({required String roomId});
 
-  Future<Map<String, dynamic>> loadProfileCache({required String profileId});
-
-  Future<Map<String, dynamic>> sendMessage({required String content});
+  Future<Map<String, dynamic>> sendMessage({required Message message});
 }
