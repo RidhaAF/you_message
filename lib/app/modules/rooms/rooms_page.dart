@@ -11,119 +11,113 @@ class RoomsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RoomsController roomsController = Get.find();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'YouMessage',
-          textScaleFactor: 1.0,
-        ),
-        actions: [
-          Obx(
-            () => roomsController.isSigningOut.value
+    return GetBuilder(
+      builder: (RoomsController controller) => Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'YouMessage',
+            textScaleFactor: 1.0,
+          ),
+          actions: [
+            controller.isSigningOut.value
                 ? const DefaultLoadingIndicator()
                 : IconButton(
-                    onPressed: () => roomsController.signOut(),
+                    onPressed: () => controller.signOut(),
                     tooltip: 'Sign Out',
                     icon: const Icon(Icons.logout),
                   ),
-          ),
-        ],
+          ],
+        ),
+        body: body(controller),
       ),
-      body: Obx(
-        () {
-          if (roomsController.isRoomsLoading.value) {
-            return const Center(
-              child: DefaultLoadingIndicator(),
-            );
-          } else if (roomsController.isRoomsLoaded.value) {
-            final newUsers = roomsController.newUsers;
-            final rooms = roomsController.rooms;
+    );
+  }
 
-            if (roomsController.isProfilesLoaded.value) {
-              final profiles = roomsController.profiles;
+  Widget body(RoomsController controller) {
+    if (controller.isRoomsLoading.value) {
+      return const DefaultLoadingIndicator();
+    } else if (controller.isRoomsLoaded.value) {
+      final newUsers = controller.newUsers;
+      final rooms = controller.rooms;
 
-              return Column(
-                children: [
-                  NewUsers(newUsers: newUsers),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: rooms.length,
-                      itemBuilder: (context, i) {
-                        final room = rooms[i];
-                        final otherUser = profiles[room.otherUserId];
+      if (controller.isProfilesLoaded.value) {
+        final profiles = controller.profiles;
 
-                        return ListTile(
-                          onTap: () => Get.toNamed(
-                            AppRoutes.message,
-                            arguments: {
-                              'roomId': room.id,
-                            },
-                          ),
-                          leading: CircleAvatar(
-                            child: Text(
-                              otherUser?.username.substring(0, 2) ?? '',
-                              textScaleFactor: 1.0,
-                            ),
-                          ),
-                          title: Text(
-                            otherUser?.username ?? '',
-                            textScaleFactor: 1.0,
-                          ),
-                          subtitle: room.lastMessage != null
-                              ? Text(
-                                  room.lastMessage!.content,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  textScaleFactor: 1.0,
-                                )
-                              : const Text(
-                                  'Room created',
-                                  textScaleFactor: 1.0,
-                                ),
-                          trailing: Text(
-                            format(
-                              room.lastMessage?.createdAt ?? room.createdAt,
-                              locale: 'en_short',
-                            ),
-                            textScaleFactor: 1.0,
-                          ),
-                        );
+        return Column(
+          children: [
+            NewUsers(newUsers: newUsers),
+            Expanded(
+              child: ListView.builder(
+                itemCount: rooms.length,
+                itemBuilder: (context, i) {
+                  final room = rooms[i];
+                  final otherUser = profiles[room.otherUserId];
+
+                  return ListTile(
+                    onTap: () => Get.toNamed(
+                      AppRoutes.message,
+                      arguments: {
+                        'roomId': room.id,
+                        'username': otherUser?.username,
                       },
                     ),
-                  ),
-                ],
-              );
-            } else {
-              return const Center(
-                child: DefaultLoadingIndicator(),
-              );
-            }
-          } else if (roomsController.isRoomsEmpty.value) {
-            final newUsers = roomsController.newUsers;
-            return Column(
-              children: [
-                NewUsers(newUsers: newUsers),
-                const Expanded(
-                  child: Center(
-                    child: Text(
-                      'Start a chat by tapping on available users',
+                    leading: CircleAvatar(
+                      child: Text(
+                        otherUser?.username.substring(0, 2) ?? '',
+                        textScaleFactor: 1.0,
+                      ),
+                    ),
+                    title: Text(
+                      otherUser?.username ?? '',
                       textScaleFactor: 1.0,
                     ),
-                  ),
-                ),
-              ],
-            );
-          } else {
-            return const Center(
+                    subtitle: room.lastMessage != null
+                        ? Text(
+                            room.lastMessage!.content,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textScaleFactor: 1.0,
+                          )
+                        : const Text(
+                            'Room created',
+                            textScaleFactor: 1.0,
+                          ),
+                    trailing: Text(
+                      format(
+                        room.lastMessage?.createdAt ?? room.createdAt,
+                        locale: 'en_short',
+                      ),
+                      textScaleFactor: 1.0,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        );
+      } else {
+        return const DefaultLoadingIndicator();
+      }
+    } else if (controller.isRoomsEmpty.value) {
+      final newUsers = controller.newUsers;
+      return Column(
+        children: [
+          NewUsers(newUsers: newUsers),
+          const Expanded(
+            child: Center(
               child: Text(
-                'Something went wrong',
+                'Start a chat by tapping on available users',
                 textScaleFactor: 1.0,
               ),
-            );
-          }
-        },
+            ),
+          ),
+        ],
+      );
+    }
+    return const Center(
+      child: Text(
+        'Something went wrong',
+        textScaleFactor: 1.0,
       ),
     );
   }

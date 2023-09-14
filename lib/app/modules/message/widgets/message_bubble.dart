@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:timeago/timeago.dart';
 import 'package:you_message/app/data/models/message.dart';
-import 'package:you_message/app/data/models/profile.dart';
+import 'package:you_message/app/modules/message/widgets/user_avatar.dart';
 import 'package:you_message/app/utils/constants/app_constants.dart';
-import 'package:you_message/app/widgets/default_loading_indicator.dart';
 import 'package:you_message/app/widgets/default_spacer.dart';
 
 class MessageBubble extends StatelessWidget {
   final Message message;
-  final Profile? profile;
   const MessageBubble({
     super.key,
     required this.message,
-    this.profile,
   });
 
   @override
@@ -31,15 +28,7 @@ class MessageBubble extends StatelessWidget {
 
   List<Widget> messageContents() {
     List<Widget> bubble = [
-      if (!message.isMine)
-        CircleAvatar(
-          child: profile == null
-              ? const DefaultLoadingIndicator()
-              : Text(
-                  profile!.username.substring(0, 2),
-                  textScaleFactor: 1.0,
-                ),
-        ),
+      if (!message.isMine) UserAvatar(userId: message.profileId),
       DefaultSpacer(width: defaultMargin),
       Flexible(
         child: Container(
@@ -51,7 +40,7 @@ class MessageBubble extends StatelessWidget {
             color: message.isMine
                 ? primaryColor
                 : (Get.isDarkMode ? greyColor : secondaryColor),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(defaultRadius),
           ),
           child: Text(
             message.content,
