@@ -30,6 +30,9 @@ class AppPages {
       name: AppRoutes.message,
       page: () => const MessagePage(),
       binding: MessageBinding(),
+      arguments: {
+        'roomId': Get.arguments['roomId'] ?? '',
+      },
     ),
   ];
 }

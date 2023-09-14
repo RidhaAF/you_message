@@ -34,7 +34,7 @@ class MessageService implements MessageRepository {
       return {
         'success': false,
         'status': 500,
-        'message': error,
+        'message': error.toString(),
       };
     }
   }
